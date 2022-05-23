@@ -69,7 +69,7 @@ const mint = async () => {
 <header>{$error}</header>
 <table>
   <tr>
-    <td><a href="/"><img alt="" src="/cell.png" class='beat logo'></a></td>
+    <td><a href="."><img alt="" src="cell.png" class='beat logo'></a></td>
     <td class='large'>{$gas}</td>
     <td class='large'>{rate}</td>
     <td class='large'>${price}</td>
