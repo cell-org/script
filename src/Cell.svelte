@@ -89,6 +89,10 @@ const mint = async () => {
 <div class='container'>
 <div class='side'>
   <div class='row'>
+    <div class='col'>domain</div>
+    <textarea placeholder="enter your contract domain" class='flexible' bind:value={$Token.domain}></textarea>
+  </div>
+  <div class='row'>
     <div class='col'>cid</div>
     <input placeholder="metadata IPFS cid" class='flexible' type="text" bind:value={$Token.cid}>
   </div>
@@ -336,5 +340,15 @@ header {
 }
 header:empty{
   padding: 0;
+}
+textarea {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+  color: white;
+  outline: none;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  height: 100px;
 }
 </style>

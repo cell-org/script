@@ -1,18 +1,14 @@
 import { derived, writable } from 'svelte/store';
-let nuron = new Nuron({
-  key: "m'/44'/60'/0'/0/0",
-  workspace: "svelte",
-  domain: {
-    "address": "0xed30ea17c9a8b8b7fc4aea5b9f8f0f3af349bb0d",
-    "chainId": 4,
-    "name": "Payment"
-  }
-})
 export let receiver = writable();
 export let puzzle = writable();
 export let error = writable("");
 export let Token = writable({
   cid:"bafkreidztp557q7fvbq5t34uat5l3vztkcjzavatrohclmigh5o7qxyrq4",
+  domain: JSON.stringify({
+    "address": "0xed30ea17c9a8b8b7fc4aea5b9f8f0f3af349bb0d",
+    "chainId": 4,
+    "name": "Payment"
+  }, null, 2),
   owns: [],
   burned: [],
   payments: [],
@@ -40,6 +36,11 @@ export let token = derived(
   ($Token, set) => {
     console.log("UPDATED", $Token)
     if ($Token && $Token.cid) {
+      let nuron = new Nuron({
+        key: "m'/44'/60'/0'/0/0",
+        workspace: "svelte",
+        domain: JSON.parse($Token.domain)
+      })
       nuron.token.create($Token).then((t) => {
         set(t)
       }).catch((e) => {
